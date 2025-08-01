@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+
+
+
+      :root {
+  --primary-color: linear-gradient(to bottom right, #87CEEB, #4682B4);
+  --primary-hover: linear-gradient(to bottom right, #4682B4, #87CEEB);
+  --text-color: #fff;
+  --text-light: #ddd;
+  --bg-color: linear-gradient(to bottom right, #333, #000);
+  --card-bg: #444;
+  --border-color: #555;
+  --shadow: 0 3px 10px rgba(0,0,0,0.3);
+  --shadow-hover: 0 5px 15px rgba(0,0,0,0.4);
+  --transition: all 0.3s ease;
+}
+
+body.dark-mode {
+  --primary-color: black;  
+  --primary-hover: linear-gradient(to bottom right, #87CEEB, #4682B4);
+  --text-color: #fff;
+  --text-light: #fff;
+  --bg-color:  linear-gradient(to bottom right, #4682B4, #87CEEB);
+  --card-bg: maroon;
+  --border-color: black;
+  --shadow: 0 3px 10px rgba(0,0,0,0.3);
+  --shadow-hover: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+body {
+User-select: none; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--bg-color);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  color: var(--text-color);
+  transition: var(--transition);
+  line-height: 1.6;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Marquee Styles */
+.category-marquee {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: var(--transition);
+    position: relative;
+}
+
+.marquee-content {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 30s linear infinite;
+}
+
+.marquee-content:hover {
+    animation-play-state: paused;
+}
+
+.category-item {
+    display: inline-block;
+    margin-right: 40px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.category-item i {
+    margin-right: 8px;
+    color: white;
+}
+
+.category-item a {
+    color: white;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.category-item a:hover {
+    color: #f0f0f0;
+    text-decoration: underline;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Dark mode adjustments */
+body.dark-mode .category-marquee {
+    background-color: var(--primary-hover);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* Container and header styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+header {
+    /* background-color: var(--primary-color); */
+    color: white;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Theme toggle button */
+#themeToggle {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    z-index: 100;
+    transition: var(--transition);
+}
+
+#themeToggle:hover {
+    transform: scale(1.1);
+}
+
+body.dark-mode #themeToggle {
+    background: var(--primary-hover);
+}
+        
+        #cardsContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2rem;
+        }
+       
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+}
+
+body.dark-mode .card {
+  background: rgba(51, 51, 51, 0.1);
+  border: 1px solid rgba(68, 68, 68, 0.3);
+}
+
+.card-title, .card-detail {
+  color: #fff;
+}
+        .card {
+      
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+        
+        .image-slider {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .slides-container {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+        }
+        
+        .category {
+            font-size: 0.8rem;
+            background: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.2rem;
+            flex-grow: 1;
+        }
+        
+        .card-title {
+            margin: 0 0 0.7rem 0;
+            font-size: 1.25rem;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+        
+        .card-detail {
+            margin: 0 0 1.2rem 0;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        
+        .timestamp {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.9rem 1.2rem;
+            background-color: rgba(0,0,0,0.03);
+            border-top: 1px solid var(--border-color);
+            gap: 10px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+        
+        .btn.disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        #themeToggle {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            transition: var(--transition);
+        }
+        
+        #themeToggle:hover {
+            transform: scale(1.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        #category-title {
+            text-align: center;
+            margin: 1.5rem 0;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .loading-container {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 60px;
+            color: var(--text-light);
+        }
+        
+        .loading-spinner {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .no-results {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 60px;
+            color: var(--text-light);
+        }
+        
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            opacity: 0.7;
+        }
+        
+        .no-results p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .error-message {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 60px;
+            color: var(--text-color);
+        }
+        
+        .error-message i {
+            font-size: 3rem;
+            color: #e74c3c;
+            margin-bottom: 1.5rem;
+        }
+        
+        .error-detail {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin: 1rem 0;
+        }
+        
+        .retry-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        
+        .retry-btn:hover
+            background-color: var(--primary-hover);
+        }
+        
+        @media (max-width: 768px) {
+            #cardsContainer {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+
+
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.search-box {
+    display: flex;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: var(--shadow);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#search-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-right: none;
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+#search-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+} 
+
+#search-btn {
+    padding: 0 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#search-btn:hover {
+    background-color: var(--primary-hover);
+}
+#clear-filter-btn {
+    position: fixed;
+     top : 100px;
+    right: 25px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#clear-filter-btn:hover {
+    background: var(--primary-hover);
+}
+.no-results {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 60px;
+    color: var(--text-light);
+}
+
+.no-results i {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    opacity: 0.7;
+}
+
+.no-results p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Sid Store</h1>
+<div class="search-container">
+    <div class="search-box">
+        <input type="text" id="search-input" placeholder="Search products...">
+        <button id="search-btn"><i class="fas fa-search"></i></button>
+    </div>
+</div>
+        </div>
+
+    <!-- Category Marquee -->
+    <div class="category-marquee">
+        <div class="marquee-content">
+     
+            
+        </div>
+
+    </header>
+    
+    <main class="container">
+        <h2 id="category-title">Browse Our Products</h2>
+        <div id="cardsContainer">
+            <div class="loading-container">
+                <i class="fas fa-spinner fa-spin loading-spinner"></i>
+                <p>Loading products...</p>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            &copy; <span id="year"></span> All Rights Reserved
+        </div>
+    </footer>
+    
+    <button id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <script>
+  
+document.addEventListener('DOMContentLoaded', function() {
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const icon = themeToggle.querySelector('i');
+    
+    themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        
+        if (document.body.classList.contains('dark-mode')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
+    });
+
+    // API Configuration
+    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTPtt5U3y0VP-Fxg6yIw5MfBkEocQcZd-SWRq-s3x2mvtrlqHNwDkjpE9KWJq9hXjBCRIW5wdMUsh3g/pub?gid=0&single=true&output=tsv';
+
+    // Load data from Google Sheets
+    function loadData() {
+        const cardsContainer = document.getElementById('cardsContainer');
+        const loadingElement = cardsContainer.querySelector('.loading-container');
+        
+        fetch(SHEET_URL)
+            .then(response => response.text())
+            .then(data => {
+                const rows = data.split('\n').slice(1); // Skip header row
+                const products = rows.map(row => {
+                    const columns = row.split('\t');
+                    return {
+                        name: columns[0],
+                        price: columns[1],
+                        detail: columns[2],
+                        url: columns[3],
+                        images: columns[4],
+                        id: columns[5],
+                        'sub-category': columns[6],
+                        'main-category': columns[7],
+                        rank: columns[8]
+                    };
+                });
+                generateCategories(products);
+                products.forEach((product, index) => {
+                    createProductCard(Object.values(product), index);
+                });
+                
+                if (products.length === 0) {
+                    cardsContainer.innerHTML = '<p>No products available.</p>';
+                }
+                
+                // Hide the spinner after data has been loaded
+                loadingElement.style.display = 'none';
+            })
+            .catch(error => {
+                console.error('Error fetching TSV data:', error);
+                loadingElement.innerHTML = '<p>Error loading data.</p>';
+            });
+    }
+
+    // Generate categories
+    function generateCategories(data) {
+        const categories = [...new Set(data.map(item => item['main-category']))];
+        const marqueeContent = document.querySelector('.marquee-content');
+
+        categories.forEach(category => {
+            const categoryItem = document.createElement('div');
+            categoryItem.className = 'category-item';
+            categoryItem.innerHTML = `
+                <a href="#" class="category-link" data-category="${category}">
+                    ${category}
+                </a>
+            `;
+            marqueeContent.appendChild(categoryItem);
+        });
+
+        // Add event listener to category links
+        const categoryLinks = document.querySelectorAll('.category-link');
+        categoryLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const category = this.getAttribute('data-category');
+                filterProducts(category);
+            });
+        });
+    }
+
+    // Create product card element
+    function createProductCard(columns, index) {
+        // Check if product has required data
+        if (!columns[0] || !columns[1] || !columns[2]) {
+            return; // Skip empty products
+        }
+
+        const cardsContainer = document.getElementById('cardsContainer');
+        const card = document.createElement('div');
+        card.className = 'card';
+        
+        // Create image slider if images exist
+        let sliderHTML = '';
+        if (columns[4] && columns[4].startsWith('http')) {
+            const imageUrls = columns[4].split(',').map(url => url.trim()).filter(url => url);
+            
+            sliderHTML = `
+                <div class="image-slider" id="slider-${index}">
+                    <div class="slides-container">
+                        ${imageUrls.map(url => `
+                            <div class="slide" style="background-image: url('${url}')">
+                                <div class="slide-content">
+                                    <div class="category">${columns[6]}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        } else {
+            sliderHTML = `
+                <div class="image-slider">
+                    <div class="slides-container">
+                        <div class="slide" style="background: #eee; display: flex; justify-content: center; align-items: center;">
+                            <i class="fas fa-image" style="font-size: 3rem; opacity: 0.3;"></i>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Create card HTML
+        card.innerHTML = `
+            ${sliderHTML}
+            <div class="card-body">
+                <div class="card-meta">
+                    <span class="price">Rs: ${columns[1]}</span>
+                    <span class="timestamp">${columns[7]}</span>
+                </div>
+                <h3 class="card-title">${columns[0]}</h3>
+                <p class="card-detail">${columns[2]}</p>
+            </div>
+            
+            <div class="card-footer">
+                ${columns[3] && columns[3].startsWith('http') ? 
+                    `<a href="${columns[3]}" class="btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-external-link-alt"></i> Visit
+                    </a>` : 
+                    '<span class="btn disabled"><i class="fas fa-unlink"></i> No Link</span>'
+                }
+                <a href="#" class="btn category-btn" data-category="${columns[6]}">
+                    <i class="fas fa-tag"></i> ${columns[6]}
+                </a>
+            </div>
+        `;
+        
+        cardsContainer.appendChild(card);
+        
+        // Add event listener to category buttons
+        const categoryBtns = card.querySelectorAll('.category-btn');
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function(event) {
+                event.preventDefault();
+                const category = this.getAttribute('data-category');
+                filterProducts(category);
+            });
+        });
+        
+        // Initialize auto-slider if images exist
+        if (columns[4] && columns[4].startsWith('http')) {
+            const imageUrls = columns[4].split(',').map(url => url.trim()).filter(url => url);
+            if (imageUrls.length > 1) {
+                initAutoSlider(`slider-${index}`, imageUrls.length);
+            }
+        }
+    }
+
+    // Auto-slider function
+    function initAutoSlider(sliderId, slideCount) {
+        const slider = document.getElementById(sliderId);
+        const slidesContainer = slider.querySelector('.slides-container');
+        let currentSlide = 0;
+        
+        // Clone first slide and append to end for infinite effect
+        const firstSlide = slidesContainer.children[0].cloneNode(true);
+        slidesContainer.appendChild(firstSlide);
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slideCount;
+            const offset = -currentSlide * 100;
+            slidesContainer.style.transform = `translateX(${offset}%)`;
+            
+            // Reset position instantly when we reach the clone
+            if (currentSlide === 0) {
+                setTimeout(() => {
+                    slidesContainer.style.transition = 'none';
+                    slidesContainer.style.transform = 'translateX(0%)';
+                    setTimeout(() => {
+                        slidesContainer.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                    }, 10);
+                }, 500);
+            }
+        }
+        
+        // Start auto-sliding (change slide every 3 seconds)
+        setInterval(nextSlide, 3000);
+    }
+
+    // Search functionality
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.getElementById('search-btn');
+
+    searchBtn.addEventListener('click', searchProducts);
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            searchProducts();
+        }
+    });
+
+    function searchProducts() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            const title = card.querySelector('.card-title').textContent.toLowerCase();
+            if (title.includes(searchTerm)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        const visibleCards = document.querySelectorAll('.card:not([style*="display: none"])');
+        if (visibleCards.length === 0) {
+            const cardsContainer = document.getElementById('cardsContainer');
+            cardsContainer.innerHTML = '<p>No products found.</p>';
+        }
+        
+        // Show clear filter button
+        const clearFilterBtn = document.getElementById('clear-filter-btn');
+        if (!clearFilterBtn) {
+            const btn = document.createElement('button');
+            btn.id = 'clear-filter-btn';
+            btn.textContent = 'Show All';
+            btn.onclick = function() {
+                const cards = document.querySelectorAll('.card');
+                cards.forEach(card => {
+                    card.style.display = 'block';
+                });
+                btn.style.display = 'none';
+            };
+            document.body.appendChild(btn);
+        } else {
+            clearFilterBtn.style.display = 'block';
+        }
+    }
+
+    function filterProducts(category) {
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            const cardCategory = card.querySelector('.timestamp').textContent.trim().toLowerCase();
+            const cardSubCategory = card.querySelector('.card-footer .category-btn').textContent.trim().toLowerCase();
+            
+            if (cardCategory.includes(category.toLowerCase()) || cardSubCategory.includes(category.toLowerCase())) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            } 
+        });
+        
+        // Show clear filter button
+        const clearFilterBtn = document.getElementById('clear-filter-btn');
+        if (!clearFilterBtn) {
+            const btn = document.createElement('button');
+            btn.id = 'clear-filter-btn';
+            btn.textContent = 'Clear Filter';
+            btn.onclick = function() {
+                const cards = document.querySelectorAll('.card');
+                cards.forEach(card => {
+                    card.style.display = 'block';
+                });
+                btn.style.display = 'none';
+            };
+            document.body.appendChild(btn);
+        } else {
+            clearFilterBtn.style.display = 'block';
+        }
+    }
+
+    // Initial data load
+    loadData();
+});
+
+    </script>
+</body>
+</html>
