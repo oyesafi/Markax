@@ -6,7 +6,7 @@ Classic and Smooth
   <br>
   <a href="https://oyesafi.github.io/Markax/index.html"><strong>➥ New Update</strong></a>
   <br>
-  <a href="https://oyesafi.github.io/Markax/index2.html/"><strong>➥ New Demo</strong></a>
+  <a href="https://oyesafi.github.io/Markax/index2.html"><strong>➥ New Demo</strong></a>
 
 </div>
 
