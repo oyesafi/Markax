@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Product</title>
+    <style>
+        /* Add some basic styling to the form */
+        form {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            gap: 20px;
+        }
+        
+        .file-input-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .file-input-label {
+            display: block;
+            padding: 12px 20px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .file-input-label:hover {
+            background: #45a049;
+        }
+        
+        #fileInput {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        button {
+            padding: 12px 24px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #0b7dda;
+        }
+        
+        #imageInfo {
+            margin: 20px 0;
+            padding: 10px;
+            background: #e9e9e9;
+            border-radius: 4px;
+            max-width: 100%;
+            word-break: break-all;
+        }
+        
+        #copyButton {
+            background: #ff9800;
+        }
+        
+        #copyButton:hover {
+            background: #e68a00;
+        }
+    </style>
+</head>
+<body>
+    <form id="product-form">
+        <label for="product-details">Product Details:</label>
+        <textarea id="product-details" class="input-field" rows="10" cols="50" placeholder="Enter product details"></textarea>
+        <button type="button" onclick="parseProductDetails()">Parse</button>
+        
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required>
+        
+        <label for="detail">Detail:</label>
+        <textarea id="detail" name="detail" required></textarea>
+        
+        <label for="url">URL:</label>
+        <input value="https://wa.me/923492858448?text="type="url" id="url" name="url" required>
+        
+        <label for="images">Images:</label>
+        <input type="text" id="images" name="images" required>
+        <div class="container">
+            <div class="file-input-wrapper">
+                <label for="fileInput" class="file-input-label">Choose File</label>
+                <input type="file" id="fileInput" accept="image/*">
+            </div>
+            <button id="uploadButton" type="button">Upload to Cloudinary</button>
+            <div id="imageInfo">Auto Filled</div>
+        </div>
+        
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" required>
+        
+        <label for="main-category">Main Category:</label>
+        <select id="main-category" name="main-category" required>
+            <option value="">Select Main Category</option>
+            <option value="Beauty & Care 💄">Beauty & Care 💄</option>
+            <option value="Women Corner 👩">Women Corner 👩</option>
+            <option value="Men's Fashion 👕">Men's Fashion 👕</option>
+            <option value="Home & Living 🏠">Home & Living 🏠</option>
+            <option value="Kids & Mother 👶">Kids & Mother 👶</option>
+            <option value="Tech & Tools 💻">Tech & Tools 💻</option>
+            <option value="Brands 👜">Brands 👜</option>
+        </select>
+        
+        <label for="sub-category">Sub Category:</label>
+        <select id="sub-category" name="sub-category" required>
+            <!-- Options will be populated based on main category -->
+        </select>
+        
+        <label for="rank">Rank:</label>
+        <select id="rank" name="rank" required>
+            <option value="true">True</option>
+            <option value="false">False</option>
+        </select>
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="https://upload-widget.cloudinary.com/global/all.js"></script>
+    <script>
+        function parseProductDetails() {
+            const inputField = document.getElementById('product-details');
+            const nameOutput = document.getElementById('name');
+            const detailOutput = document.getElementById('detail');
+            const idOutput = document.getElementById('id');
+
+            const inputText = inputField.value;
+            const lines = inputText.split('\n');
+
+            let name = '';
+            let detail = '';
+            let id = '';
+
+            lines.forEach(line => {
+                if (line.startsWith('*Product Name*:')) {
+                    name = line.replace('*Product Name*: ', '');
+                } else if (line.startsWith('*Product Description*:')) {
+                    detail = line.replace('*Product Description*: ', '') + '\n';
+                } else if (line.startsWith('*Product Details*:') || line.startsWith('Product Type:') || line.startsWith('Material:') || line.startsWith('Product Details:') || line.startsWith('Package Includes:') || line.startsWith('Weight:') || line.startsWith('Disclaimer:')) {
+                    detail += line + '\n';
+                } else if (line.startsWith('Product Code:')) {
+                    id = line.replace('Product Code: ', '');
+                }
+            });
+
+            nameOutput.value = name;
+            detailOutput.value = detail.trim();
+            idOutput.value = id;
+        }
+        
+        const mainCategorySelect = document.getElementById('main-category');
+        const subCategorySelect = document.getElementById('sub-category');
+        
+        const subCategories = {
+            'Beauty & Care 💄': ['Skin Care', 'Hair Care', 'Curlers & Straighter', 'Rings', 'Bundles', 'Shavers & Trimmers', 'Personal Care', 'Necklace'],
+            'Women Corner 👩': ['Ready to Wear', '3 Piece', '2 Piece', 'Festival Cloths', 'Crossbody Bags', 'Watches', 'Night Suit', 'Flat'],
+            'Men\'s Fashion 👕': ['Cotton Unstiched', 'Tracksuit', 'Wash n Wear', 'Perfumes', 'Watches', 'Shalwar Kameez', 'Track Suit', 'Wallets'],
+            'Home & Living 🏠': ['Home Accessories', 'Kitchen Accessories', 'Decor Light', 'Utensils', 'Double Bedsheet', 'Wall Decor', 'Wall Clock', 'Books'],
+            'Kids & Mother 👶': ['Full Dress', 'Track Suit', 'Brush', 'Kids Sleep Wear', 'Classic Toys', 'Educational Toys', 'Feeder & Pacific', 'Styling & Access'],
+            'Tech & Tools 💻': ['Bike Accessories', 'Headphone & Handsfree', 'Light &Lamp', 'Camera', 'Car Accessories', 'Smart Watches', 'Mobile Accessories', 'Computer Accessories'],
+            'Brands 👜': ['14th August', 'Shoes', 'Watches', 'Bag', 'Wallet', 'Perfumes', 'Gifts', 'Tracksuits']
+        };
+        
+        mainCategorySelect.addEventListener('change', (e) => {
+            const mainCategory = e.target.value;
+            subCategorySelect.innerHTML = '';
+            if (mainCategory) {
+                subCategories[mainCategory].forEach(subCategory => {
+                    const option = document.createElement('option');
+                    option.value = subCategory;
+                    option.textContent = subCategory;
+                    subCategorySelect.appendChild(option);
+                });
+            }
+        });
+        
+        const cloudName = 'dejfqitlu';
+        const uploadButton = document.getElementById('uploadButton');
+        const fileInput = document.getElementById('fileInput');
+        const imageInfo = document.getElementById('imageInfo');
+        const imagesInput = document.getElementById('images');
+        let uploadedUrl = '';
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                imageInfo.textContent = `Selected: ${e.target.files[0].name}`;
+            } else {
+                imageInfo.textContent = 'No file selected';
+            }
+        });
+        
+        uploadButton.addEventListener('click', () => {
+            const file = fileInput.files[0];
+            if (!file) {
+                imageInfo.textContent = '⚠️ Please select a file first!';
+                return;
+            }
+            
+            cloudinary.createUploadWidget({
+                cloudName,
+                uploadPreset: 'Markaz',
+                sources: ['local', 'url', 'camera']
+            }, (error, result) => {
+                if (!error && result.event === 'success') {
+                    uploadedUrl = result.info.secure_url;
+                    if (imagesInput.value) {
+                        imagesInput.value += `, ${uploadedUrl}`;
+                    } else {
+                        imagesInput.value = uploadedUrl;
+                    }
+                    imageInfo.innerHTML = `✅ Uploaded! <a href="${uploadedUrl}" target="_blank">View Image</a>`;
+                } else if (error) {
+                    imageInfo.textContent = '❌ Upload failed. Please try again.';
+                }
+            }).open();
+        });
+        
+        const form = document.getElementById('product-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            // Submit form data to Google Sheet using Google Apps Script or other method
+            // For example:
+            fetch('https://script.google.com/macros/s/AKfycby4J0jf2uj7d_LMX2L0bUVbcyyAk_1F9a8-fAIEEjALFhCNfiJCSptC9bkM3g1q8Co9kw/exec', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+        });
+    </script>
+</body>
+</html>
