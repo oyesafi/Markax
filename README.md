@@ -1,5 +1,13 @@
 # Markax
 Classic and Smooth
-https://oyesafi.github.io/Markax/index.html
+<h2 align="center">Sid Creative - eCommerce website</h2>
 
-[https://oyesafi.github.io/Markax/index.html],(Shan)
+  Sid Creative is fully responsive ecommerce website, <br />Responsive for all devices, built using HTML, CSS, and JavaScript.
+  <br>
+  <a href="https://oyesafi.github.io/Markax/index.html"><strong>➥ New Update</strong></a>
+  <br>
+  <a href="https://oyesafi.github.io/Markax/index2.html/"><strong>➥ New Demo</strong></a>
+
+</div>
+
+
