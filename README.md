@@ -8,6 +8,9 @@ Classic and Smooth
   <br>
   <a href="https://oyesafi.github.io/Markax/index2.html"><strong>➥ New Demo</strong></a>
 
+[![➥ New Update](https://img.shields.io/badge/Marqaz-Visit-green)](https://oyesafi.github.io/Marqaz/index.html)
+
+[![➥ New Demo](https://img.shields.io/badge/Marqaz-Visit-green)](https://oyesafi.github.io/Marqaz/index2.html)
 </div>
 
 
