@@ -4,9 +4,11 @@ Classic and Smooth
 
   Sid Creative is fully responsive ecommerce website, <br />Responsive for all devices, built using HTML, CSS, and JavaScript.
 
-[![➥ New Update](https://img.shields.io/badge/Marqaz-Visit-green)](https://oyesafi.github.io/Marqaz/index.html)
+[![➥ New Update](https://img.shields.io/badge/Markax-Visit-green)](https://oyesafi.github.io/Markax/index.html)
   <br>
-[![➥ New Demo](https://img.shields.io/badge/Marqaz-Visit-red)](https://oyesafi.github.io/Marqaz/index2.html)
+[![➥ New Demo](https://img.shields.io/badge/Markax-Visit-red)](https://oyesafi.github.io/Markax/index2.html) 
+<br>
+[![➥ New Demo](https://img.shields.io/badge/admin-Visit-red)](https://oyesafi.github.io/Markax/admin.html)
 </div>
 
 
