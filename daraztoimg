@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image URL Extractor</title>
+</head>
+<body>
+    <h1>Image URL Extractor</h1>
+    <input id="url-input" type="text" placeholder="Enter URL" style="width: 80%; padding: 10px; font-size: 16px;">
+    <button onclick="extractImageUrls()">Extract URLs</button>
+    <textarea id="image-urls" style="width: 80%; height: 100px; padding: 10px; font-size: 16px;"></textarea>
+    <button onclick="copyImageUrls()">Copy URLs</button>
+
+    <script>
+        function extractImageUrls() {
+            const url = document.getElementById('url-input').value;
+            const proxyUrl = 'https://api.allorigins.win/raw?url=';
+            fetch(proxyUrl + encodeURIComponent(url))
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const images = doc.querySelectorAll('img');
+                    const imageUrls = Array.from(images).map(img => img.src);
+                    document.getElementById('image-urls').value = imageUrls.join(', ');
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function copyImageUrls() {
+            const imageUrls = document.getElementById('image-urls');
+            imageUrls.select();
+            document.execCommand('copy');
+            alert('Image URLs copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
