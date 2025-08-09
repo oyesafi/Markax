@@ -9,6 +9,10 @@ Classic and Smooth
 [![➥ New Demo](https://img.shields.io/badge/Markax-Visit-blue)](https://oyesafi.github.io/Markax/index2.html) 
 <br>
 [![➥ New Demo](https://img.shields.io/badge/admin-Visit-red)](https://oyesafi.github.io/Markax/admin.html)
+<br>
+[![➥ New Admin](https://img.shields.io/badge/daraztoimg-Visit-grey)](https://oyesafi.github.io/Markax/daraztoimg.html)
+
+
 </div>
 
 
