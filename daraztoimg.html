@@ -3,27 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image URL Extractor</title>
+    <title>Product Image Extractor</title>
+    <style>
+        #image-urls {
+            width: 80%;
+            height: 100px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #product-images {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .product-image {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Image URL Extractor</h1>
+    <h1>Product Image Extractor</h1>
     <input id="url-input" type="text" placeholder="Enter URL" style="width: 80%; padding: 10px; font-size: 16px;">
     <button onclick="extractImageUrls()">Extract URLs</button>
-    <textarea id="image-urls" style="width: 80%; height: 100px; padding: 10px; font-size: 16px;"></textarea>
+    <textarea id="image-urls"></textarea>
     <button onclick="copyImageUrls()">Copy URLs</button>
+    <div id="product-images"></div>
 
     <script>
         function extractImageUrls() {
             const url = document.getElementById('url-input').value;
-            const proxyUrl = 'https://api.allorigins.win/raw?url=';
-            fetch(proxyUrl + encodeURIComponent(url))
+            fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`)
                 .then(response => response.text())
                 .then(html => {
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(html, 'text/html');
                     const images = doc.querySelectorAll('img');
-                    const imageUrls = Array.from(images).map(img => img.src);
+                    const productImages = Array.from(images).filter(img => img.src.includes('https://img.drz.lazcdn.com/g/kf/') || img.src.includes('https://img.lazcdn.com/g/kf/'));
+                    const imageUrls = productImages.map(img => img.src);
                     document.getElementById('image-urls').value = imageUrls.join(', ');
+                    const productImagesDiv = document.getElementById('product-images');
+                    productImagesDiv.innerHTML = '';
+                    productImages.forEach(img => {
+                        const imageElement = document.createElement('img');
+                        imageElement.src = img.src;
+                        imageElement.classList.add('product-image');
+                        productImagesDiv.appendChild(imageElement);
+                    });
                 })
                 .catch(error => console.error('Error:', error));
         }
