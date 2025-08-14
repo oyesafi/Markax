@@ -1,57 +1,90 @@
-<!DOCTYPE html>
+
+<!DOCTYPE HTML>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daraz Product Image Extractor</title>
-</head>
-<body>
+    <head>
+        <meta charset="utf-8">
+        <title>Link Analysis</title>
 
-<h1>Daraz Product Image Extractor</h1>
-<input id="url-input" type="text" placeholder="Enter Daraz product URL" style="width: 80%; padding: 10px;">
-<button onclick="extractImages()">Extract Images</button>
-<br><br>
-<label for="image-urls">Image URLs (comma-separated):</label>
-<textarea id="image-urls" style="width: 80%; height: 50px;"></textarea>
-<button onclick="copyImageUrls()">Copy URLs</button>
-<br><br>
-<label for="image-preview">Image Preview:</label>
-<div id="image-preview"></div>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noindex, nofollow">
+        <link rel="stylesheet" type="text/css" href="resources/styles/linea.css">
+        <link rel="stylesheet" type="text/css" href="resources/styles/grid.css">
+        <link rel="stylesheet" type="text/css" href="resources/styles/studio.css?b=262">
+        <link rel="stylesheet" type="text/css" href="resources/styles/custom.css?t=1669760357">
 
-<script>
-    async function extractImages() {
-        const url = document.getElementById('url-input').value;
-        try {
-            const response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
-            const html = await response.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            // Adjusting for Daraz product images
-            const images = doc.querySelectorAll('img[src*="https://img.drz.lazcdn.com/g/kf/"], img[src*="https://img.lazcdn.com/g/kf/"]');
-            const imageUrls = Array.from(images).map(img => img.src);
-            document.getElementById('image-urls').value = imageUrls.join(', ');
-            const preview = document.getElementById('image-preview');
-            preview.innerHTML = '';
-            images.forEach(img => {
-                const imgElement = document.createElement('img');
-                imgElement.src = img.src;
-                imgElement.style.maxWidth = '200px';
-                imgElement.style.margin = '10px';
-                preview.appendChild(imgElement);
-            });
-        } catch (error) {
-            document.getElementById('image-urls').value = 'Error: ' + error.message;
-            document.getElementById('image-preview').innerText = '';
-        }
-    }
+        <!--[if lte IE 7]><script src="resources/scripts/icons-lte-ie7.js"></script><![endif]-->
 
-    function copyImageUrls() {
-        const imageUrls = document.getElementById('image-urls');
-        imageUrls.select();
-        document.execCommand('copy');
-        alert('Image URLs copied to clipboard!');
-    }
-</script>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    </head>
+    <body class="embed ltr">
+
+
+<section class="website alt embedded no-header">
+    <div class="container">
+        <form action="" method="get" class="loadable">
+            <input type="hidden" name="id" value="link-analysis">
+            <input type="hidden" name="ref" value="Unknown">
+            <input type="hidden" name="ref_hash" value="59d8e729a8ec9b5af193e5ca6eae20ea6d601d5227e20f0d10a921ed6fd28c04">
+
+                        <input type="hidden" name="h" value="0">
+            
+            
+                        <input type="hidden" name="r" value="0b4843">
+            
+            <input type="text" class="text-input" name="site" placeholder="Click here to enter a website..." value=""/>
+            <div class="apply">
+                <input type="hidden" name="exp" value="1755233976">
+                <button type="submit" class="loadable">Submit</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="embed ">
+<section class="generic">
+    <div class="container">
+       
+        <h3>Enter a website above to get started.</h3>
+    </div>
+</section>
+
+
+	
+	
+	<template id="loader">
+		<div class="loadable-overlay">
+			<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-loader-quarter" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+				<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+				<line x1="12" y1="6" x2="12" y2="3" />
+				<line x1="6" y1="12" x2="3" y2="12" />
+				<line x1="7.75" y1="7.75" x2="5.6" y2="5.6" />
+			</svg>
+		</div>
+	</template>
+
+	<script type="text/javascript" src="resources/scripts/jquery.min.js?b=262"></script>
+	<script type="text/javascript" src="resources/scripts/jquery-ui.min.js?b=262"></script>
+	<script type="text/javascript">
+		var path = "";
+	</script>
+	<script type="text/javascript" src="resources/scripts/sparklines.js?b=262"></script>
+	<script type="text/javascript" src="resources/scripts/studio.js?b=262"></script>
+
+	
+	<script>
+		var id = "0b4843";
+
+		function sendHeight() {
+			parent.postMessage(id + ':' + document.body.offsetHeight, '*');
+		}
+
+		sendHeight();
+		setInterval(sendHeight, 100);
+	</script>
+
+	
+	
+	<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"d13100f721044a7e98f3783475225189","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
