@@ -1,90 +1,303 @@
 
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Link Analysis</title>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noindex, nofollow">
-        <link rel="stylesheet" type="text/css" href="resources/styles/linea.css">
-        <link rel="stylesheet" type="text/css" href="resources/styles/grid.css">
-        <link rel="stylesheet" type="text/css" href="resources/styles/studio.css?b=262">
-        <link rel="stylesheet" type="text/css" href="resources/styles/custom.css?t=1669760357">
-
-        <!--[if lte IE 7]><script src="resources/scripts/icons-lte-ie7.js"></script><![endif]-->
-
-
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-    </head>
-    <body class="embed ltr">
-
-
-<section class="website alt embedded no-header">
-    <div class="container">
-        <form action="" method="get" class="loadable">
-            <input type="hidden" name="id" value="link-analysis">
-            <input type="hidden" name="ref" value="Unknown">
-            <input type="hidden" name="ref_hash" value="59d8e729a8ec9b5af193e5ca6eae20ea6d601d5227e20f0d10a921ed6fd28c04">
-
-                        <input type="hidden" name="h" value="0">
-            
-            
-                        <input type="hidden" name="r" value="0b4843">
-            
-            <input type="text" class="text-input" name="site" placeholder="Click here to enter a website..." value=""/>
-            <div class="apply">
-                <input type="hidden" name="exp" value="1755233976">
-                <button type="submit" class="loadable">Submit</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terabox Downloader - Download and Play Terabox Videos</title>
+    <meta name="description" content="TeraBox Downloader simplifies downloading and playing Terabox videos. Download and play videos directly, no login required.">
+    <meta name="keywords" content="terabox, terabox direct download, terabox downloader, terabox online downloader, terabox player, terabox online player, terabox links, terabox link converter, terabox direct link, terabox direct videos, terabox direct files, terabox bypass, terabox link bypass, terabox video downloader, terabox video download, terabox link downloader, terabox downloader online">
+    <meta property="og:site_name" content="Terabox Downloader">
+    <meta property="og:title" content="Terabox Downloader">
+    <meta property="og:description" content="TeraBox Downloader simplifies downloading and playing Terabox videos. Download and play videos directly, no login required.">
+    <meta property="og:url" content="https://teraboxdownloader.in/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en">
+    <meta property="og:image" content="/website.webp">
+    <meta property="og:image:alt" content="Terabox Downloader">
+    <meta property="og:image:type" content="image/webp">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="600">
+    <meta name="twitter:title" content="Terabox Downloader">
+    <meta name="twitter:description" content="TeraBox Downloader simplifies downloading and playing Terabox videos. Download and play videos directly, no login required.">
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="/website.webp">
+    <meta name="twitter:image:alt" content="Terabox Downloader">
+    <meta name="twitter:image:type" content="image/webp">
+    <meta name="twitter:image:width" content="800">
+    <meta name="twitter:image:height" content="600">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="canonical" href="https://teraboxdownloader.in/">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Terabox Downloader",
+      "url": "https://teraboxdownloader.in/",
+      "description": "TeraBox Downloader simplifies downloading and playing Terabox videos. Download and play videos directly, no login required.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://teraboxdownloader.in/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does this tool work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our tool generates direct download links for files on Terabox by leveraging the platform's CDN. We do not host or store any files; we only facilitate access to your content."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a limit to the number of links I can generate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, you can generate as many direct links as you need. The tool is free and has no quantity restrictions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What Terabox links does the downloader support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It works for public Terabox links, especially for individual files. Currently, it does not support entire folder links."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it legal to use this tool?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely! The downloader is designed to facilitate access to files you already have permission to view on Terabox. It complies with copyright laws and terms of service."
+          }
+        }
+      ]
+    }
+    </script>
+    <style>
+        body { background: #f8f9fa; }
+        .banner { background: #0d6efd; color: #fff; padding: 2rem 0; text-align: center; }
+        .content { margin-top: 2rem; }
+        .result-link { margin: 1rem 0; }
+        .footer { background: #222; color: #fff; padding: 1rem 0; text-align: center; margin-top: 2rem; }
+        .seo-nav {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+            padding: 1.5rem 1rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .seo-nav a {
+            color: #111!important;
+            font-weight: 600;
+            margin: 0 0.7rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .seo-nav a:hover {
+            color: #0d6efd!important;
+        }
+        .seo-section h3 {
+            color: #0d6efd;
+            margin-top: 2rem;
+        }
+        .share-btn {
+            background: #0d6efd;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+        .share-btn:hover {
+            background: #0056b3;
+        }
+        aside.warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0 1rem 0;
+            border: 1px solid #ffeeba;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9684366306946543"
+     crossorigin="anonymous"></script>
+     <script>document.write(atob("PHNjcmlwdCB0eXBlPSd0ZXh0L2phdmFzY3JpcHQnIHNyYz0nLy9lYXNpZXJjYW1wYWlnbndvcmtzaG9wLmNvbS83Zi9hZS84Mi83ZmFlODI2ZmUzNzU0YmI5NTFjMzc2MGM2N2I3MWI2MS5qcyc+PC9zY3JpcHQ+"));</script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Terabox Downloader</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="privacy.html">Privacy Policy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="terms.html">Terms</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                </ul>
             </div>
-        </form>
+        </div>
+    </nav>
+    <!-- Banner -->
+    <div class="banner">
+        <div class="container">
+            <h1>Terabox Downloader</h1>
+            <p>Paste your Terabox link and get a direct download link.</p>
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <input class="form-control mb-2" id="teraboxLink" type="url" placeholder="Paste your Terabox link here">
+                    <button class="btn btn-light w-100" id="downloadBtn"><i class="fa-solid fa-download"></i> Get Links</button>
+                </div>
+            </div>
+            <div id="resultLinks" class="mt-4"></div>
+        </div>
     </div>
-</section>
-
-<section class="embed ">
-<section class="generic">
-    <div class="container">
-       
-        <h3>Enter a website above to get started.</h3>
+    <!-- Navegación SEO interna -->
+    <div class="seo-nav">
+        <h2 style="color:#0d6efd;">Explore More Terabox Tools</h2>
+        <a href="terabox-video-downloader.html">Video Downloader</a>
+        <a href="terabox-link-converter.html">Link Converter</a>
+        <a href="terabox-player-online.html">Player Online</a>
+        <a href="terabox-app.html">App</a>
+        <a href="terabox-free-storage.html">Free Storage</a>
+        <a href="terabox-sharing.html">Sharing</a>
+        <a href="terabox-login-bypass.html">Login Bypass</a>
+        <a href="terabox-download-manager.html">Download Manager</a>
+        <a href="terabox-direct-link.html">Direct Link</a>
+        <a href="terabox-cloud-storage.html">Cloud Storage</a>
     </div>
-</section>
-
-
-	
-	
-	<template id="loader">
-		<div class="loadable-overlay">
-			<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-loader-quarter" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-				<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-				<line x1="12" y1="6" x2="12" y2="3" />
-				<line x1="6" y1="12" x2="3" y2="12" />
-				<line x1="7.75" y1="7.75" x2="5.6" y2="5.6" />
-			</svg>
-		</div>
-	</template>
-
-	<script type="text/javascript" src="resources/scripts/jquery.min.js?b=262"></script>
-	<script type="text/javascript" src="resources/scripts/jquery-ui.min.js?b=262"></script>
-	<script type="text/javascript">
-		var path = "";
-	</script>
-	<script type="text/javascript" src="resources/scripts/sparklines.js?b=262"></script>
-	<script type="text/javascript" src="resources/scripts/studio.js?b=262"></script>
-
-	
-	<script>
-		var id = "0b4843";
-
-		function sendHeight() {
-			parent.postMessage(id + ':' + document.body.offsetHeight, '*');
-		}
-
-		sendHeight();
-		setInterval(sendHeight, 100);
-	</script>
-
-	
-	
-	<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"d13100f721044a7e98f3783475225189","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+    <!-- Fin navegación SEO interna -->
+    <!-- Content -->
+    <div class="content container">
+        <section class="seo-section">
+            <h2>What is Terabox?</h2>
+            <p>TeraBox is a cloud storage service that offers up to 1TB of free space for users to store, manage, and share files. It is popular for its generous free storage, easy-to-use interface, and support for large files, making it ideal for backing up photos, videos, documents, and more.</p>
+            <h3>Key Features</h3>
+            <ul>
+                <li>Up to 1TB of free storage for every user</li>
+                <li>Data security and file encryption</li>
+                <li>Intuitive and user-friendly interface</li>
+                <li>Cross-platform support: web, Android, iOS, Windows, Mac</li>
+                <li>Automatic backup and file synchronization</li>
+                <li>Easy sharing of files and folders via links</li>
+                <li>Support for large file uploads and downloads</li>
+            </ul>
+        </section>
+        <section class="seo-section">
+            <h2>How to Use This Downloader</h2>
+            <ol>
+                <li>Copy the public link of the file you want to download from Terabox.</li>
+                <li>Paste the link into the input box at the top of this page.</li>
+                <li>Click the <b>Get Links</b> button.</li>
+                <li>Wait a few seconds while we generate the direct download links for you.</li>
+                <li>Click the <b>Download</b> button next to each file to start your download instantly.</li>
+            </ol>
+        </section>
+        <section class="seo-section">
+            <h2>Why Use a Terabox Downloader?</h2>
+            <ul>
+                <li>Bypass speed limits and restrictions of the official Terabox web player.</li>
+                <li>Download files directly without logging in or installing extra software.</li>
+                <li>Access your files from any device, anytime.</li>
+                <li>Get direct links for use in download managers or sharing.</li>
+            </ul>
+        </section>
+        <section class="seo-section">
+            <h2>Examples and Use Cases</h2>
+            <h3>Download a Video</h3>
+            <p>Paste a public Terabox video link and get a direct download link for your favorite videos. Works for MP4, MKV, AVI, and more.</p>
+            <h3>Convert a Link</h3>
+            <p>Use our <a href="terabox-link-converter.html">Link Converter</a> to turn any public Terabox link into a direct download link for use in download managers.</p>
+            <h3>Play Online</h3>
+            <p>Stream your Terabox videos instantly with our <a href="terabox-player-online.html">Player Online</a> tool.</p>
+        </section>
+        <section class="seo-section">
+            <h2>Frequently Asked Questions</h2>
+            <ul>
+                <li><b>How does it work?</b> This tool generates direct download links for your public Terabox files using a secure backend API.</li>
+                <li><b>Is there a limit?</b> No, you can generate as many links as you need, completely free.</li>
+                <li><b>Is it legal?</b> Yes, as long as you have permission for the files you are downloading.</li>
+                <li><b>Can I download folders?</b> Currently, only individual file links are supported, not entire folders.</li>
+                <li><b>Do you store my files?</b> No, we do not store or cache any files. All downloads are direct from Terabox servers.</li>
+                <li><b>Is my privacy protected?</b> Yes, we do not log or track your links or downloads.</li>
+            </ul>
+        </section>
+        <section class="seo-section">
+            <h2>Disclaimer</h2>
+            <aside class="warning">
+                <b>Disclaimer:</b> This site is not affiliated with Flextech Inc. or terabox.app. We do not store files, we only facilitate direct links. Use this tool only for files you have the legal right to access.
+            </aside>
+        </section>
+        <section class="seo-section">
+            <h2>Tips for Best Results</h2>
+            <ul>
+                <li>Make sure your Terabox link is public and not password-protected.</li>
+                <li>If a link does not work, try refreshing the page or generating a new link from Terabox.</li>
+                <li>For very large files, use a download manager for better stability.</li>
+            </ul>
+        </section>
+        <section class="seo-section">
+            <h2>Share This Site</h2>
+            <button class="share-btn" onclick="navigator.share ? navigator.share({title:'Terabox Downloader',url:window.location.href}) : alert('Copy the URL to share!')">Share</button>
+            <p>Or copy and share: <input type="text" value="https://teraboxdownloader.in/" readonly style="width:70%"></p>
+        </section>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div>© 2025 TeraboxDownloader. Not affiliated with Terabox.app</div>
+    </footer>
+    <script>
+    document.getElementById('downloadBtn').addEventListener('click', async function() {
+        const link = document.getElementById('teraboxLink').value.trim();
+        const resultDiv = document.getElementById('resultLinks');
+        resultDiv.innerHTML = '';
+        if (!link) {
+            resultDiv.innerHTML = '<div class="alert alert-warning">Please paste a Terabox link.</div>';
+            return;
+        }
+        resultDiv.innerHTML = '<div class="alert alert-info">Searching for download links...</div>';
+        try {
+            // Cambia la URL del fetch para apuntar a tu backend con HTTPS y dominio
+            const response = await fetch('https://api.teraboxdownloader.in/api/terabox', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ urlTerabox: link })
+            });
+            if (!response.ok) throw new Error('API error');
+            const data = await response.json();
+            if (!data || data.error) {
+                resultDiv.innerHTML = '<div class="alert alert-danger">No files found or the link is invalid.</div>';
+                return;
+            }
+            // Renderiza solo el enlace de descarga válido
+            let html = '<h5>Direct Download Link:</h5>';
+            html += `<div class="result-link"><a href="${data.enlace}" class="btn btn-success mt-2" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> Download</a></div>`;
+            html += `<div class="alert alert-warning mt-2">The download link may expire in a few minutes. If it fails, please try again.</div>`;
+            resultDiv.innerHTML = html;
+        } catch (err) {
+            resultDiv.innerHTML = '<div class="alert alert-danger">Error: Could not retrieve file details. Please try again later.</div>';
+        }
+    });
+    </script>
 </body>
 </html>
